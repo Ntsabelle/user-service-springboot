@@ -114,4 +114,72 @@ To view the in-memory database, navigate to:
 
 Use the following credentials:
 - JDBC URL: `jdbc:h2:mem:userdb`
-- Username
+- Username: `sa`
+- Password: *(leave blank)*
+
+---
+
+## API Endpoints
+
+| Method | Endpoint             | Description              |
+|--------|----------------------|--------------------------|
+| POST   | `/api/users`         | Create a new user        |
+| PUT    | `/api/users/{id}`    | Update user by ID        |
+| DELETE | `/api/users/{id}`    | Delete user by ID        |
+| GET    | `/api/users/search`  | Find user by email       |
+| GET    | `/api/users`         | List all users           |
+
+---
+
+## Example Requests
+
+### Create User
+
+```bash
+curl -X POST http://localhost:8080/api/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "jane.doe@example.com",
+    "password": "securePass123",
+    "name": "Jane Doe"
+  }'
+```
+
+### Find User by Email
+
+```bash
+curl -X GET "http://localhost:8080/api/users/search?email=jane.doe@example.com"
+```
+
+### Update User
+
+```bash
+curl -X PUT http://localhost:8080/api/users/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "jane.new@example.com",
+    "password": "newSecurePass456",
+    "name": "Jane Updated"
+  }'
+```
+
+### Delete User
+
+```bash
+curl -X DELETE http://localhost:8080/api/users/1
+```
+
+### List All Users
+
+```bash
+curl -X GET http://localhost:8080/api/users
+```
+
+---
+
+## Notes
+
+- Uses in-memory H2 DB — data resets on restart.
+- Exception handling is centralized via `GlobalExceptionHandler`.
+- Validates input using `@Valid` and DTOs.
+- Passwords are securely hashed using BCrypt.
