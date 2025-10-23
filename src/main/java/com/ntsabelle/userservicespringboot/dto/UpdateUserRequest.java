@@ -1,6 +1,7 @@
 package com.ntsabelle.userservicespringboot.dto;
 
-import jakarta.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 public class UpdateUserRequest {
     @Email

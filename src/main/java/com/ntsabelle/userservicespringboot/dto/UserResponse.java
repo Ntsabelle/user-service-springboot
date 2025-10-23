@@ -16,4 +16,16 @@ public class UserResponse {
     public static UserResponse from(User user) {
         return new UserResponse(user.getId(), user.getEmail(), user.getName());
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

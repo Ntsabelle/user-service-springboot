@@ -1,6 +1,6 @@
 package com.ntsabelle.userservicespringboot.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -17,7 +17,10 @@ public class User {
 
     private String name;
 
-    public User(String email, String encode, String name) {
+    public User(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
     }
 
     public User() {
